@@ -1,0 +1,5 @@
+#!/bin/bash
+for pod in $(kubectl get pods -n kube-system | grep -i canal |  awk '{ if ($5 !~/0/) print $2 }');do 
+  kubectl logs -n kube-system $pod -c calico-node |& gzip > $pod.log.gz
+  kubectl logs -n kube-system $pod -c calico-node -p |& gzip > $pod.previous.log.gz
+done
