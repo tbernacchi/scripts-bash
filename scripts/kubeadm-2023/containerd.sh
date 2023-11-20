@@ -18,3 +18,4 @@ mkdir -p /etc/containerd
 /usr/local/bin/containerd/containerd config default > /etc/containerd/config.toml
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
 systemctl restart containerd
+`which crictl` config --set runtime-endpoint=unix:///var/run/containerd/containerd.sock
